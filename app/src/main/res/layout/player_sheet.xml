@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/player_bg"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="70dp"
+    android:id="@+id/player_sheet">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/media_header_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_weight="4"
+            android:background="@color/blue_header"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            app:srcCompat="@drawable/player_header_icon" />
+
+        <TextView
+            android:id="@+id/player_header_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="Media Player"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/player_header_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingTop="16dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="16dp"
+            android:text="Not Playing"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/player_filename"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Filename"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <ImageButton
+        android:id="@+id/player_play"
+        android:layout_width="70dp"
+        android:background="@color/blue_player"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_filename"
+        app:srcCompat="@drawable/ic_play_foreground" />
+
+    <ImageButton
+        android:id="@+id/player_rewind"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/blue_player"
+        app:layout_constraintBottom_toBottomOf="@+id/player_play"
+        app:layout_constraintEnd_toStartOf="@+id/player_play"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/player_play"
+        app:srcCompat="@drawable/ic_fast_rewind_foreground" />
+
+    <ImageButton
+        android:id="@+id/player_forward"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/blue_player"
+        app:layout_constraintBottom_toBottomOf="@+id/player_play"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/player_play"
+        app:layout_constraintTop_toTopOf="@+id/player_play"
+        app:srcCompat="@drawable/ic_fast_forward_foreground" />
+
+    <SeekBar
+        android:id="@+id/player_seekbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_play" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
