@@ -1,6 +1,8 @@
 package com.example.audiorecorder;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -103,7 +105,23 @@ public class RecordedFragment extends Fragment {
         listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_recordedFragment_to_audioListFragment);
+                if (isRecording){
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                    alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            navController.navigate(R.id.action_recordedFragment_to_audioListFragment);
+                            isRecording = false;
+                        }
+                    });
+                    alertDialog.setNegativeButton("CANCEL", null);
+                    alertDialog.setTitle("Audio is Still Recording!");
+                    alertDialog.setMessage("Are you sure you want to stop recording?");
+                    alertDialog.create().show();
+                }
+                else {
+                    navController.navigate(R.id.action_recordedFragment_to_audioListFragment);
+                }
             }
         });
     }
@@ -123,7 +141,6 @@ public class RecordedFragment extends Fragment {
         record_timer.setBase(SystemClock.elapsedRealtime());
         // timer for chronometer
         record_timer.start();
-        //TODO: code starts from line 124. this first few lines are ust for defining variables
 
         String recordPath = getActivity().getExternalFilesDir("/").getAbsolutePath();
         // selecting date and time
@@ -161,5 +178,13 @@ public class RecordedFragment extends Fragment {
         mediaRecorder.release();
         // setting it to null so that we can create a new 'mediaRecorder' when we start again
         mediaRecorder = null;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (isRecording){
+            stopRecording();
+        }
     }
 }
